@@ -26,7 +26,8 @@ import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
-import com.google.mlkit.vision.text.TextRecognizerOptions;
+import com.google.mlkit.vision.text.TextRecognizerOptionsInterface;
+import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
 @ReactModule(name = TextRecognitionModule.NAME)
 public class TextRecognitionModule extends ReactContextBaseJavaModule {
@@ -53,7 +54,8 @@ public class TextRecognitionModule extends ReactContextBaseJavaModule {
       final Bitmap bitmap = getBitmap(imgPath);
 
       if (bitmap != null) {
-        TextRecognizer recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+         TextRecognizerOptionsInterface textRecognizerOptions = new TextRecognizerOptions.Builder().build();
+          TextRecognizer recognizer = TextRecognition.getClient(textRecognizerOptions);
 
         int rotationDegree = 0;
         InputImage image = InputImage.fromBitmap(bitmap, rotationDegree);
